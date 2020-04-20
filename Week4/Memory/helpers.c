@@ -15,7 +15,11 @@ void grayscale(int height, int width, RGBTRIPLE image[height][width])
     {
         for (int j = 0; j < width; j++)
         {
-            avg_color = (image[i][j].rgbtBlue + image[i][j].rgbtGreen + image[i][j].rgbtRed) / 3;
+            if ((image[i][j].rgbtBlue == image[i][j].rgbtGreen) && (image[i][j].rgbtBlue == image[i][j].rgbtRed))
+            {
+                continue;
+            }
+            avg_color = round(((float)image[i][j].rgbtBlue + (float)image[i][j].rgbtGreen + (float)image[i][j].rgbtRed) / 3);
 
             // sets the original pixel with the new color set of RGB
             image[i][j].rgbtBlue = avg_color;
@@ -146,4 +150,3 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
 
     return;
 }
-
