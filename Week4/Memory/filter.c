@@ -71,8 +71,8 @@ int main(int argc, char *argv[])
         return 6;
     }
 
-    int height = abs(bi.biHeight);
-    int width = bi.biWidth;
+    int height = abs(bi.biHeight); // the number of rows in the image
+    int width = bi.biWidth; // total pixels present on each row
 
     // Allocate memory for image
     RGBTRIPLE(*image)[width] = calloc(height, width * sizeof(RGBTRIPLE));
