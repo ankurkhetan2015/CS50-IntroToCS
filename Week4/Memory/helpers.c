@@ -152,7 +152,8 @@ void blur(int height, int width, RGBTRIPLE image[height][width])
     free(copyImage);
     return;
 }
-void sobelOperation(int currI, int currJ, int height, int width, RGBTRIPLE img[height][width], RGBTRIPLE neighbor[height][width], int Gx[3][3], int Gy[3][3])
+void sobelOperation(int currI, int currJ, int height, int width, RGBTRIPLE img[height][width], RGBTRIPLE neighbor[height][width],
+                    int Gx[3][3], int Gy[3][3])
 {
     // new value of each pixel would be average of values of all of pixels that are within 1 row and column of the original pixel
     int initialI = currI - 1;
@@ -179,25 +180,25 @@ void sobelOperation(int currI, int currJ, int height, int width, RGBTRIPLE img[h
             // assume 1 pixel solid black border around the edge of the image for ease of multiplication with Gx and Gy kernels, treat each color as 0
             if (i < 0 || i >= height || j < 0 || j >= width)
             {
-                blue_Gx += 0*Gx[m][n];
-                green_Gx += 0*Gx[m][n];
-                red_Gx += 0*Gx[m][n];
+                blue_Gx += 0 * Gx[m][n];
+                green_Gx += 0 * Gx[m][n];
+                red_Gx += 0 * Gx[m][n];
 
-                blue_Gy += 0*Gy[m][n];
-                green_Gy += 0*Gy[m][n];
-                red_Gy += 0*Gy[m][n];
+                blue_Gy += 0 * Gy[m][n];
+                green_Gy += 0 * Gy[m][n];
+                red_Gy += 0 * Gy[m][n];
             }
 
             // calculate the weighted sum for each color with each kernel
             else
             {
-            blue_Gx += img[i][j].rgbtBlue*Gx[m][n];
-            green_Gx += img[i][j].rgbtGreen*Gx[m][n];
-            red_Gx += img[i][j].rgbtRed*Gx[m][n];
+                blue_Gx += img[i][j].rgbtBlue * Gx[m][n];
+                green_Gx += img[i][j].rgbtGreen * Gx[m][n];
+                red_Gx += img[i][j].rgbtRed * Gx[m][n];
 
-            blue_Gy += img[i][j].rgbtBlue*Gy[m][n];
-            green_Gy += img[i][j].rgbtGreen*Gy[m][n];
-            red_Gy += img[i][j].rgbtRed*Gy[m][n];
+                blue_Gy += img[i][j].rgbtBlue * Gy[m][n];
+                green_Gy += img[i][j].rgbtGreen * Gy[m][n];
+                red_Gy += img[i][j].rgbtRed * Gy[m][n];
             }
             n++;
         }
@@ -229,6 +230,7 @@ void sobelOperation(int currI, int currJ, int height, int width, RGBTRIPLE img[h
     neighbor[currI][currJ].rgbtRed = tempR;
     return;
 }
+
 // Detect edges
 void edges(int height, int width, RGBTRIPLE image[height][width])
 {
