@@ -90,33 +90,9 @@ int main(int argc, string argv[])
 
         printf("\n");
     }
-    /*
-    for(int i = 0; i < candidate_count; i++)
-    {
-        for(int j = 0; j < candidate_count; j++)
-        {
-            printf("%d\t", preferences[i][j]);
-        }
-        printf("\n");
-    }
-
-    printf("The pairs are:\n");
-    */
+    
     add_pairs();
-    /*
-    for (int i = 0; i < pair_count; i++)
-    {
-        printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-    }
-    */
     sort_pairs();
-    /*
-    printf("The sorted pairs are:\n");
-    for (int i = 0; i < pair_count; i++)
-    {
-        printf("%i %i\n", pairs[i].winner, pairs[i].loser);
-    }
-    */
     lock_pairs();
     print_winner();
     return 0;
