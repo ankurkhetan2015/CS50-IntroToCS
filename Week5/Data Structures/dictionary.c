@@ -24,10 +24,35 @@ node *table[N];
 // Returns true if word is in dictionary else false
 bool check(const char *word)
 {
-    // TODO
+    // Get index of searched word
+    unsigned int index = hash(word);
+
+    node *tmp = table[index];
+    if (tmp == NULL) // Check if no node in table location
+    {
+        return false;
+    }
+    // If index in the hash table has some value
+    while (tmp != NULL)
+    {
+        // Check if word searched is present in dictionary irrespective of case
+        if (strcasecmp(tmp->word, word) == 0)
+        {
+            return true;
+        }
+        tmp = tmp->next;
+    }
+
     return false;
 }
 
+/* Took ideas for hash function value (index) part and bucket size from mixture of following two sources
+
+1. mrcrittall2016. “mrcrittall2016/CS50-pset5---Building-the-Fastest-Possible-Spell-Checker-in-C.” GitHub,
+   github.com/mrcrittall2016/CS50-pset5---Building-the-fastest-possible-spell-checker-in-C/blob/master/dictionary.c.
+
+2. Hash Table Dictionary -- Extra Credit, www.ccs.neu.edu/home/sbratus/com1101/hash-dict.html.
+*/
 // Hashes word to a number
 unsigned int hash(const char *word)
 {
@@ -116,6 +141,15 @@ unsigned int size(void)
 // Unloads dictionary from memory, returning true if successful else false
 bool unload(void)
 {
-    // TODO
-    return false;
+    node *temp = NULL;
+    for (int i = 0; i < N; i++)
+    {
+        temp = table[i];
+        for (node *current = table[i]; current != NULL; current = temp)
+        {
+            temp = temp->next;
+            free(current);
+        }
+    }
+    return true;
 }
