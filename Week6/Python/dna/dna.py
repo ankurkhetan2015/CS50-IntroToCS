@@ -24,7 +24,7 @@ with open(database, 'r') as csv_file:
     # Open the txt file containing the DNA sequence to identify
     with open(sequence, 'r') as dnafile:
 
-        # Save the sequence as strong
+        # Save the sequence as string
         dnadata = dnafile.readline()
 
         # Stores the count of all available STR in given order in database file
