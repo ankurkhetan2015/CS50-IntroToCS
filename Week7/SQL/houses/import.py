@@ -13,8 +13,8 @@ db = cs50.SQL("sqlite:///students.db")
 # Delete all existing data from students table in students.db
 db.execute("DELETE FROM students")
 
-# Open characters.csv file to insert them into database
-with open("characters.csv", 'r') as file:
+# Open the file passed in as argument to insert items from them into database
+with open(argv[1], 'r') as file:
     # Create DicReader
     reader = csv.DictReader(file)
 
